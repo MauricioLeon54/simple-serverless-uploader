@@ -6,7 +6,8 @@
   "scripts": {
     "eslint:all": "eslint ./ --fix",
     "lint": "yarn eslint:all",
-    "typescript": "tsc --noEmit --incremental"
+    "typescript": "tsc --noEmit --incremental",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
