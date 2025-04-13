@@ -2,6 +2,7 @@
 .thumbs.db
 node_modules
 .dist
+dist
 # Log files
 npm-debug.log*
 yarn-debug.log*

@@ -7,17 +7,17 @@
     "eslint:all": "eslint ./ --fix",
     "lint": "yarn eslint:all",
     "typescript": "tsc --noEmit --incremental",
-    "build": "tsc"
+    "build": "tsup"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/MauricioLeon54/simple-serverless-uploader.git"
   },
   "files": [
-    ".dist"
+    "dist"
   ],
   "bin": {
-    "ssu": ".dist/index.js"
+    "ssu": "dist/index.js"
   },
   "keywords": [
     "Serverless",
@@ -50,8 +50,9 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^16.0.0",
-    "typescript": "^5.8.3",
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "commander": "^13.1.0"
