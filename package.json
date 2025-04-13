@@ -5,7 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "eslint:all": "eslint ./ --fix",
-    "lint": "yarn eslint:all"
+    "lint": "yarn eslint:all",
+    "typescript": "tsc --noEmit --incremental"
   },
   "repository": {
     "type": "git",
