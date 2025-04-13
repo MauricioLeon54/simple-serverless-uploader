@@ -18,7 +18,7 @@ async function main() {
     .description(`Deploy to AWS (${DeploymentTypes.S3_WEBSITE} or ${DeploymentTypes.LAMBDA_SERVER})`)
     .option('--stage <stage>', `Deployment stage [${userConfig.stages.join(',')}]`)
     .action(async (type: DeploymentType, { stage }: { stage: string }) => {
-      await deployProject({ type, stage });
+      await deployProject({ type, stage, projectName: userConfig.projectName });
     });
 
   program.parse(process.argv);
