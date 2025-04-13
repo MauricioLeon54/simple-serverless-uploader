@@ -14,10 +14,10 @@
     "url": "git+ssh://git@github.com/MauricioLeon54/simple-serverless-uploader.git"
   },
   "files": [
-    "dist"
+    ".dist"
   ],
   "bin": {
-    "ssu": "dist/index.js"
+    "ssu": ".dist/index.js"
   },
   "keywords": [
     "Serverless",
