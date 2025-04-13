@@ -1,0 +1,46 @@
+/* Visit https://aka.ms/tsconfig.json to read more about this file */
+{
+    "compilerOptions": {
+        "target": "ES2019",
+        "module": "commonjs",
+        "lib": ["ES2019"],
+        "allowJs": false,
+        "checkJs": false,
+        "outDir": "./.dist/",
+        "strict": true,
+        "strictNullChecks": true,
+        "removeComments": true,
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "paths": {
+            "src/*": ["src/*"],
+            "scripts/*": ["scripts/*"],
+            "test/*": ["test/*"],
+            "app/*": ["*"],
+        },
+        "typeRoots": ["./src/typescript", "./node_modules/@types/"],
+        "types": ["node"],
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true
+        // "importHelpers": true,
+        // "incremental": true
+    },
+    "include": [
+        "./src/**/*.ts",
+        "./scripts/**/*.ts",
+    ],
+    "exclude": [
+        "node_modules/**/*",
+        ".serverless/**/*",
+        ".webpack/**/*",
+        "_warmup/**/*",
+        ".vscode/**/*",
+    ],
+    "ts-node": {
+        "require": ["tsconfig-paths/register"]
+    }
+}
