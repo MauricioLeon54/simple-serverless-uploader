@@ -1,0 +1,27 @@
+{
+  "name": "simple-serverless-uploader",
+  "version": "0.0.1",
+  "description": "Simple Package to Upload Serverless Projects",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MauricioLeon54/simple-serverless-uploader.git"
+  },
+  "keywords": [
+    "Serverless",
+    "Simple",
+    "Lambda",
+    "Static",
+    "Site",
+    "S3"
+  ],
+  "author": "MauricioLeon54 (mauleontejeda3@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MauricioLeon54/simple-serverless-uploader/issues"
+  },
+  "homepage": "https://github.com/MauricioLeon54/simple-serverless-uploader#readme"
+}
