@@ -1,7 +1,14 @@
 import fs from 'fs';
 import path from 'path';
+import type { Config } from 'src/types/Config';
 
-export async function loadUserConfig() {
+const defaultConfig: Config = {
+  projectName: 'My Project ',
+  stages: ['prod', 'dev'],
+  serverlessFile: './serverless.yml',
+};
+
+export async function loadUserConfig(): Promise<Config> {
   const filenames = ['ssu.config.js', 'ssu.config.cjs']; // TODO: Pending support to Typescript config file 'ssu.config.ts'
 
   for (const filename of filenames) {
@@ -12,11 +19,11 @@ export async function loadUserConfig() {
         return configModule.default || configModule;
       } catch (error) {
         console.error(`❌ Error loading config file ${filename}:`, error);
-        return null;
+        return defaultConfig;
       }
     }
   }
 
   console.warn('⚠️ No config file found. Using defaults.');
-  return null;
+  return defaultConfig;
 }
