@@ -1,0 +1,41 @@
+{
+  "files.exclude": {
+    "**/__pycache__": true,
+    ".venv/**": true,
+    ".idea/**": true,
+    ".serverless/**": true,
+    "node_modules/**": true,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
+  },
+  "code-runner.executorMap": {
+      "python": " pipenv run python $fullFileName",
+      "typescript": " npx tsx $fullFileName"
+  },
+  "code-runner.runInTerminal": true,
+  "vetur.validation.template": false,
+  "vetur.format.enable": false,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript"],
+  "vetur.experimental.templateInterpolationService": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["cypress.json"],
+      "url": "https://on.cypress.io/cypress.schema.json"
+    }
+  ],
+  "editor.bracketPairColorization.enabled": true,
+  "editor.formatOnSave": true,
+  // "editor.defaultFormatter": "eslint-friendly-formatter",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  }
+}
