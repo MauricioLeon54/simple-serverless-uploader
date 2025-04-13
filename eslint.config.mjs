@@ -11,7 +11,6 @@ import js from '@eslint/js';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import _import from 'eslint-plugin-import';
-import jest from 'eslint-plugin-jest';
 import noRelativeImportPaths from 'eslint-plugin-no-relative-import-paths';
 import prettier from 'eslint-plugin-prettier';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
@@ -43,14 +42,13 @@ export default [
       '**/webpack.config.js',
     ],
   },
-  ...fixupConfigRules(compat.extends('plugin:@typescript-eslint/recommended', 'plugin:jest/recommended', 'plugin:import/errors', 'plugin:import/warnings', 'plugin:import/typescript', 'prettier')),
+  ...fixupConfigRules(compat.extends('plugin:@typescript-eslint/recommended', 'plugin:import/errors', 'plugin:import/warnings', 'plugin:import/typescript', 'prettier')),
   {
     plugins: {
       'unused-imports': unusedImports,
       'no-relative-import-paths': noRelativeImportPaths,
       'import': fixupPluginRules(_import),
       prettier,
-      'jest': fixupPluginRules(jest),
       '@typescript-eslint': fixupPluginRules(typescriptEslint),
       'simple-import-sort': simpleImportSort,
     },
@@ -58,7 +56,6 @@ export default [
     languageOptions: {
       globals: {
         ...globals.node,
-        ...globals.jest,
       },
 
       parser: tsParser,
