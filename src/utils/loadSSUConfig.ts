@@ -15,7 +15,7 @@ export async function loadUserConfig(): Promise<Config> {
     const fullPath = path.resolve(process.cwd(), filename);
     if (fs.existsSync(fullPath)) {
       try {
-        const configModule = await import(fullPath);
+        const configModule = await import(fullPath); // TODO: Validate the format and the values of the configuration
         return configModule.default || configModule;
       } catch (error) {
         console.error(`❌ Error loading config file ${filename}:`, error);
