@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+ssh://git@github.com/MauricioLeon54/simple-serverless-uploader.git"
   },
+  "files": [
+    "src"
+  ],
   "bin": {
     "ssu": "src/index.js"
   },
@@ -26,5 +29,12 @@
   "bugs": {
     "url": "https://github.com/MauricioLeon54/simple-serverless-uploader/issues"
   },
-  "homepage": "https://github.com/MauricioLeon54/simple-serverless-uploader#readme"
+  "homepage": "https://github.com/MauricioLeon54/simple-serverless-uploader#readme",
+  "devDependencies": {
+    "@types/node": "~20.14.8",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "commander": "^13.1.0"
+  }
 }
