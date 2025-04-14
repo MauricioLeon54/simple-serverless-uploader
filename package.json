@@ -33,10 +33,15 @@
     "url": "https://github.com/MauricioLeon54/simple-serverless-uploader/issues"
   },
   "homepage": "https://github.com/MauricioLeon54/simple-serverless-uploader#readme",
+  "dependencies": {
+    "commander": "^13.1.0",
+    "shelljs": "0.8.5"
+  },
   "devDependencies": {
     "@eslint/compat": "^1.2.8",
     "@eslint/eslintrc": "^3.3.1",
     "@types/node": "~20.14.8",
+    "@types/shelljs": "0.8.15",
     "@typescript-eslint/eslint-plugin": "^8.29.1",
     "@typescript-eslint/parser": "^8.29.1",
     "eslint": "^9.24.0",
@@ -54,7 +59,7 @@
     "tsup": "^8.4.0",
     "typescript": "^5.8.3"
   },
-  "dependencies": {
-    "commander": "^13.1.0"
+  "engines": {
+    "node": ">= 20.18.0"
   }
 }
