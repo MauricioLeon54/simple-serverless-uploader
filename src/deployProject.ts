@@ -1,12 +1,9 @@
 import type { DeploymentType } from 'src/constants/DeploymentType';
+import { verifyGitConditions } from 'src/git/verifyGitConditions';
 import type { Config } from 'src/types/Config';
 import { confirmProdStage } from 'src/utils/confirm/confirmProdStage';
 import { forced } from 'src/utils/forced';
-import { currentGitBranchIs } from 'src/utils/git/currentGitBranchIs';
-import { thereAreFilesToCommit } from 'src/utils/git/thereAreFilesToCommit';
-import { thereAreRemoteChanges } from 'src/utils/git/thereAreRemoteChanges';
 import { colorToLog } from 'src/utils/log/colorToLog';
-import { logErrorAndExit } from 'src/utils/log/logErrorAndExit';
 import { shellExec } from 'src/utils/shellExec';
 import { tagWithDate } from 'src/utils/tagWithDate';
 
@@ -20,34 +17,27 @@ export async function deployProject(request: DeployProjectRequest) {
       process.exit(1);
     }
 
-    const isProductionStage = request.stage === (request.options?.productionStage || 'prod');
+    const productionStage = request.options?.productionStage || 'prod';
+
+    const isProductionStage = request.stage === productionStage;
 
     const isGitImplementationEnabled = request.options?.gitImplementationEnabled;
     const mainBranchName = request.options?.mainGitBranch || 'main';
 
-    if (isProductionStage && !request.options?.confirmSkipped) confirmProdStage(request.projectName, request.options?.productionStage || 'prod');
+    if (isProductionStage && !request.options?.confirmSkipped) confirmProdStage(request.projectName, productionStage);
     console.time(colorToLog('blue', 'Runtime'));
 
-    if (isGitImplementationEnabled && !currentGitBranchIs('main') && !request.options?.isForced) {
-      logErrorAndExit(`You can only release to ${request.options?.productionStage || 'prod'} from the main branch!`);
+    if (isGitImplementationEnabled && !request.options?.isForced) {
+      verifyGitConditions({ mainBranch: mainBranchName, isProduction: isProductionStage, productionStageName: productionStage });
     }
 
-    if (thereAreFilesToCommit() && !request.options?.isForced) logErrorAndExit('There are uncommitted files, commit files before running script!');
-
-    if (thereAreFilesToCommit() && !forced()) logErrorAndExit('There are uncommitted files, commit files before running script!');
-    if (thereAreRemoteChanges() && !forced()) logErrorAndExit('There are remote changes not pulled or local changes not pushed, make sure to git pull changes before running script!');
-
     shellExec('yarn');
-    if (thereAreFilesToCommit() && !forced()) logErrorAndExit('yarn resulted in changes, commit and try again!');
-    if (thereAreFilesToCommit() && !forced()) logErrorAndExit('There are appsync graphql generated file changes, commit and try again!');
+
     if (!forced()) shellExec('yarn lint');
     if (!forced()) shellExec('yarn typescript');
 
-    const userName = shellExec('git config user.name').stdout;
-    const userEmail = shellExec('git config user.email').stdout;
-    // setAppVersion(incrementSemVersion(ReleaseTypes.PATCH, environment), environment);
-    // shellExec(`git add . && git commit -n -m "Build ${environment} | ${actualAppVersion} | ${buildTime}" && git push`)
     shellExec(`npx sls deploy --stage ${request.stage} --param="online" --aws-profile softii`); // --aws-profile softii
+
     const tagName = tagWithDate(request.stage);
     try {
       shellExec(`git tag -f ${tagName}`);
