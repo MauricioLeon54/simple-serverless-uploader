@@ -1,6 +1,6 @@
-import { currentGitBranchIs } from 'src/utils/git/currentGitBranchIs';
-import { thereAreFilesToCommit } from 'src/utils/git/thereAreFilesToCommit';
-import { thereAreRemoteChanges } from 'src/utils/git/thereAreRemoteChanges';
+import { currentGitBranchIs } from 'src/git/utils/currentGitBranchIs';
+import { thereAreFilesToCommit } from 'src/git/utils/thereAreFilesToCommit';
+import { thereAreRemoteChanges } from 'src/git/utils/thereAreRemoteChanges';
 import { logErrorAndExit } from 'src/utils/log/logErrorAndExit';
 
 export async function verifyGitConditions({ mainBranch, isProduction, productionStageName }: VerifyGitConditionsRequest) {
