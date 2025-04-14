@@ -35,6 +35,7 @@
   "homepage": "https://github.com/MauricioLeon54/simple-serverless-uploader#readme",
   "dependencies": {
     "commander": "^13.1.0",
+    "readline-sync": "1.4.10",
     "shelljs": "0.8.5"
   },
   "devDependencies": {
