@@ -17,8 +17,20 @@ async function main() {
     .command('deploy <type>')
     .description(`Deploy to AWS (${DeploymentTypes.S3_WEBSITE} or ${DeploymentTypes.LAMBDA_SERVER})`)
     .option('--stage <stage>', `Deployment stage [${userConfig.stages.join(',')}]`)
-    .action(async (type: DeploymentType, { stage }: { stage: string }) => {
-      await deployProject({ type, stage, availableStages: userConfig.stages, projectName: userConfig.projectName });
+    .action(async (type: DeploymentType, { stage, skipConfirm, sc, force, f }: { stage: string; skipConfirm?: boolean; sc?: boolean; force?: boolean; f?: boolean }) => {
+      await deployProject({
+        type,
+        stage,
+        availableStages: userConfig.stages,
+        projectName: userConfig.projectName,
+        options: {
+          confirmSkipped: skipConfirm || sc,
+          productionStage: userConfig.productionStage,
+          gitImplementationEnabled: userConfig.gitImplementationEnabled,
+          mainGitBranch: userConfig.mainGitBranch,
+          isForced: force || f,
+        },
+      });
     });
 
   program.parse(process.argv);
