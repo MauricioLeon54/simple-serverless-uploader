@@ -2,7 +2,6 @@ import type { DeploymentType } from 'src/constants/DeploymentType';
 import { verifyGitConditions } from 'src/git/verifyGitConditions';
 import type { Config } from 'src/types/Config';
 import { confirmProdStage } from 'src/utils/confirm/confirmProdStage';
-import { forced } from 'src/utils/forced';
 import { colorToLog } from 'src/utils/log/colorToLog';
 import { shellExec } from 'src/utils/shellExec';
 import { tagWithDate } from 'src/utils/tagWithDate';
@@ -33,8 +32,8 @@ export async function deployProject(request: DeployProjectRequest) {
 
     shellExec('yarn');
 
-    if (!forced()) shellExec('yarn lint');
-    if (!forced()) shellExec('yarn typescript');
+    if (!request.options?.isForced) shellExec('yarn lint');
+    if (!request.options?.isForced) shellExec('yarn typescript');
 
     shellExec(`npx sls deploy --stage ${request.stage} --param="online" --aws-profile softii`); // --aws-profile softii
 
