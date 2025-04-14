@@ -1,6 +1,6 @@
 {
   "name": "simple-serverless-uploader",
-  "version": "0.0.54",
+  "version": "0.0.55",
   "description": "Simple Package to Upload Serverless Projects",
   "main": "src/index.ts",
   "scripts": {
